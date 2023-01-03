@@ -1,0 +1,12 @@
+#cb, 2023
+# Uses AzureAD Powershell modue
+
+
+# Find non-Member-Accounts (like guests) 
+Get-AzureADUser -All $true| Where-Object {$_.UserType -ne "Member"}
+
+# Find accounts that are not enabled 
+Get-AzureADUser -All $true| Where-Object {$_.AccountEnabled -ne "true"}
+
+# Find accounts that are not synchronized with on-prem AD in Hybrid environments
+Get-AzureADUser -All $true| Where-Object {$_.DirSyncEnabled -ne "true"}
