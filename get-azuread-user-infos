@@ -10,3 +10,6 @@ Get-AzureADUser -All $true| Where-Object {$_.AccountEnabled -ne "true"}
 
 # Find accounts that are not synchronized with on-prem AD in Hybrid environments
 Get-AzureADUser -All $true| Where-Object {$_.DirSyncEnabled -ne "true"}
+
+# Account cleanup - get all user infos into csv
+Get-AzureADUser -All $true | select * | export-csv -Path "./users.csv" -NoTypeInformation
